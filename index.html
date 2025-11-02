@@ -3,285 +3,725 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soumyaranjan Sahoo - Developer Portfolio</title>
+    <title>SOUMYARANJAN SAHOO- AI & Machine Learning Learner</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Fonts: Inter and Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- ScrollReveal.js (for animations) -->
     <script src="https://unpkg.com/scrollreveal"></script>
+    
     <style>
+        /* Base font setup */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0a0a0a;
-            color: #e5e5e5;
+            color: #e0e0e0;
         }
-        .glass-effect {
-            background: rgba(17, 25, 40, 0.75);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.125);
+        /* Code/Tag font setup */
+        .font-code {
+            font-family: 'Roboto Mono', monospace;
         }
-        .hero-bg {
+        /* Gradient text class */
+        .gradient-text {
+            background: linear-gradient(to right, #00e5ff, #00aaff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Glassmorphism card class */
+        .glass-card {
+            background: rgba(16, 16, 16, 0.6); /* Semi-transparent charcoal */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 3D Background Canvas */
+        #particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1; /* Sits behind content, above body bg */
+        }
+        
+        /* Content Wrapper to sit ON TOP of the canvas */
+        .content-wrapper {
+            position: relative;
+            z-index: 10; /* Sits on top of the #particles-bg */
+            background: transparent;
+        }
+
+        /* Enhanced techy glow on cards */
+        .tech-card-hover {
+            transition: all 0.3s ease;
+        }
+        .tech-card-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: #00e5ff;
+            box-shadow: 0 0 25px 5px rgba(0, 229, 255, 0.15);
+        }
+        
+        /* Typewriter cursor */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 2rem; /* Matches text size */
+            background-color: #00e5ff;
+            margin-left: 8px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* --- NEW: Hero Text Glitch Effect --- */
+        .glitch {
+            position: relative;
+            animation: glitch-shake 2.5s infinite linear;
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: radial-gradient(circle at 25% 25%, rgba(0, 119, 255, 0.2) 0%, transparent 40%),
-                              radial-gradient(circle at 75% 75%, rgba(255, 70, 101, 0.2) 0%, transparent 40%);
-            z-index: -1;
-            animation: pulse 10s infinite alternate;
+            width: 100%;
+            height: 100%;
+            background: transparent;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
+        .glitch::before {
+            text-shadow: -1px 0 #00aaff;
+            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
         }
-        .tag {
-            background-color: rgba(0, 119, 255, 0.2);
-            color: #00aaff;
-            font-size: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
+        .glitch::after {
+            text-shadow: 1px 0 #ff00c1; /* Magenta for glitch */
+            animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-shake {
+            0%, 100% { transform: skewX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: skewX(0); }
+            20% { transform: skewX(-0.5deg); }
+            40% { transform: skewX(0.5deg); }
+            60% { transform: skewX(-0.5deg); }
+            80% { transform: skewX(0.5deg); }
+        }
+        @keyframes glitch-anim-1 {
+            0%, 10% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
+            15% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+            /* ... (rest of keyframes) ... */
+            100% { clip-path: polygon(0 80%, 100% 80%, 100% 95%, 0 95%); }
+        }
+        @keyframes glitch-anim-2 {
+            0%, 10% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); }
+            15% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); }
+            /* ... (rest of keyframes) ... */
+            100% { clip-path: polygon(0 10%, 100% 10%, 100% 25%, 0 25%); }
+        }
+
+        /* --- NEW: Animated Section Title Scanline --- */
+        .section-title {
+            position: relative;
             display: inline-block;
+            padding-bottom: 0.75rem; /* 12px */
         }
-        .filter-btn.active {
-            background-color: #0077ff;
-            color: #ffffff;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #00e5ff;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 0 10px 2px rgba(0, 229, 255, 0.5);
         }
+        .section-title.reveal-active::after {
+            transform: scaleX(1);
+        }
+
+        /* --- NEW: Terminal Contact Form --- */
+        .terminal-input-wrapper {
+            position: relative;
+            padding-left: 0rem; /* Space for the '>' */
+        }
+       /* {.terminal-input-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem; 
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00e5ff;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem; 
+            line-height: 1;
+            z-index: 10;
+        } }*/
+        .terminal-input {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #e0e0e0;
+            font-family: 'Roboto Mono', monospace;
+            caret-color: #00e5ff; /* Blinking cursor color */
+        }
+        .terminal-input:focus {
+            outline: none;
+            border-color: #00e5ff;
+            box-shadow: 0 0 15px 2px rgba(0, 229, 255, 0.2);
+        }
+
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">JD.</a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
-                <a href="#projects" class="text-gray-300 hover:text-white transition">Projects</a>
-                <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
-                <a href="path/to/your/resume.pdf" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition">
-                    My Resume
+    <!-- 3D Background Canvas -->
+    <div id="particles-bg"></div>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+
+        <!-- 1. Header (Navbar) -->
+        <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+            <nav class="container mx-auto px-6 flex justify-between items-center max-w-7xl">
+                <!-- Left Side: Logo -->
+                <a href="#" class="text-2xl font-bold gradient-text font-code">SOUMYA'S PORTFOLIO</a>
+                
+                <!-- Right Side: Nav Links (Desktop) -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#about" class="text-gray-300 hover:text-[#00e5ff] transition-colors">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-[#00e5ff] transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-[#00e5ff] transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-300 hover:text-[#00e5ff] transition-colors">Contact</a>
+                    <a href="https://drive.google.com/file/d/1D6ra9kHsNFYWOZo3g7jKekOIlvLyTfOn/view?usp=sharing" target="_blank" class="bg-[#00e5ff] text-black font-bold py-2 px-5 rounded-full hover:bg-opacity-80 transition-all shadow-lg shadow-[#00e5ff]/20">
+                        View Resume
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-white">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+            
+            <!-- Mobile Menu (Hidden by default) -->
+            <div id="mobile-menu" class="hidden md:hidden glass-card mx-6 mt-4 rounded-lg shadow-xl">
+                <a href="#about" class="block text-center py-3 text-white hover:text-[#00e5ff] transition-colors">About</a>
+                <a href="#skills" class="block text-center py-3 text-white hover:text-[#00e5ff] transition-colors">Skills</a>
+                <a href="#projects" class="block text-center py-3 text-white hover:text-[#00e5ff] transition-colors">Projects</a>
+                <a href="#contact" class="block text-center py-3 text-white hover:text-[#00e5ff] transition-colors">Contact</a>
+                <a href="https://drive.google.com/file/d/1D6ra9kHsNFYWOZo3g7jKekOIlvLyTfOn/view?usp=sharing" target="_blank" class="block text-center py-3 mx-6 my-3 bg-[#00e5ff] text-black font-bold rounded-full hover:bg-opacity-80 transition-all">
+                    View Resume
                 </a>
             </div>
-             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 backdrop-blur-sm">
-            <a href="#about" class="block text-center py-2 px-4 text-gray-300 hover:text-white transition">About</a>
-            <a href="#projects" class="block text-center py-2 px-4 text-gray-300 hover:text-white transition">Projects</a>
-            <a href="#contact" class="block text-center py-2 px-4 text-gray-300 hover:text-white transition">Contact</a>
-            <a href="path/to/your/resume.pdf" target="_blank" class="block text-center py-4 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium transition">
-                My Resume
-            </a>
-        </div>
-    </header>
+        </header>
 
-    <main class="container mx-auto px-6">
+        <main>
 
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center text-center relative">
-            <div class="hero-bg"></div>
-            <div class="z-10">
-                <h1 class="text-5xl md:text-7xl font-black text-white mb-4 animate-fade-in-down">John Doe</h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up">
-                    Creative Developer & UI/UX Enthusiast, crafting beautiful and functional digital experiences.
-                </p>
-                <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition transform hover:scale-105 animate-fade-in-up">
-                    View My Work
-                </a>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20">
-            <h2 class="text-4xl font-bold text-center mb-12 reveal">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/3 reveal">
-                    <img src="https://placehold.co/400x400/111728/FFFFFF?text=Your+Photo" alt="Your Name" class="rounded-full shadow-2xl mx-auto w-64 h-64 md:w-full md:h-auto object-cover">
+            <!-- 2. Hero Section -->
+            <section id="home" class="min-h-screen flex items-center justify-center relative text-center px-6">
+                <div class="z-10 reveal-fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4">
+                        Hi, I'm <span class="gradient-text glitch" data-text="SOUMYARANJAN  SAHOO">SOUMYARANJAN  SAHOO</span>
+                    </h1>
+                    <!-- Typewriter Target -->
+                    <h2 id="typewriter-target" class="text-2xl md:text-4xl font-bold text-white mb-8 h-16 md:h-12">
+                        <!-- This will be populated by JavaScript -->
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+                        I build intelligent systems, analyze complex data, and deliver impactful AI-driven solutions. Welcome to my portfolio.
+                    </p>
+                    <div class="flex justify-center gap-4 flex-wrap">
+                        <a href="#projects" class="bg-[#00e5ff] text-black font-bold py-3 px-8 rounded-full text-lg hover:bg-opacity-80 transition-all shadow-lg shadow-[#00e5ff]/30 transform hover:scale-105">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="border-2 border-[#00e5ff] text-[#00e5ff] font-bold py-3 px-8 rounded-full text-lg hover:bg-[#00e5ff] hover:text-black transition-all transform hover:scale-105">
+                            Get In Touch
+                        </a>
+                    </div>
                 </div>
-                <div class="md:w-2/3 text-lg text-gray-300 space-y-4 reveal">
-                    <p>Hello! I'm John, a passionate developer with a knack for creating elegant solutions in the least amount of time. My journey in tech started with a fascination for how things work, which quickly blossomed into a career in software development.</p>
-                    <p>I specialize in front-end development, with a strong focus on React and modern JavaScript. I love bringing ideas to life in the browser and am always learning new technologies to push the boundaries of what's possible on the web.</p>
-                    <p>When I'm not coding, you can find me exploring new hiking trails, experimenting with new recipes, or diving into a good sci-fi novel.</p>
+            </section>
+
+            <!-- 3. About Me Section -->
+            <section id="about" class="py-24 px-6">
+                <div class="container mx-auto max-w-7xl">
+                    <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16 section-title reveal">About Me</h2>
+                    <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                        <!-- Left Column: Photo -->
+                        <div class="w-full md:w-1/3 reveal-left">
+                        <img src="PROFILE.jpg" alt="SOUMYARANJAN SAHOO" class="w-64 h-64 md:w-full md:h-auto mx-auto object-cover rounded-xl shadow-2xl border-2 border-[#00e5ff]/30">
+                    </div>
+                    <!-- Right Column: Text -->
+                        <div class="w-full md:w-2/3 text-lg text-gray-300 space-y-5 reveal-right">
+                            <h3 class="text-3xl font-bold text-white">A Little Bit About Me</h3>
+                            <p>
+                                I am an AI/ML enthusiast with a strong background in data science. My passion lies in leveraging
+                                deep learning, natural-language processing, and data visualization to solve real-world problems.
+                            </p>
+                            <p>
+                                [ADD YOUR 2-3 SENTENCE BIO HERE. Talk about your experience, what you love about AI, and what you are looking for. For example: "I have 3+ years of experience working with Python and TensorFlow, developing models that have increased efficiency by 20%. I thrive in collaborative environments and am always looking to push the boundaries of what's possible with data."]
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="py-20">
-            <h2 class="text-4xl font-bold text-center mb-4 reveal">My Projects</h2>
-            <p class="text-center text-gray-400 mb-12 reveal">A selection of my favorite works.</p>
+            <!-- 4. Skills Section -->
+            <section id="skills" class="py-24 px-6 bg-[#0a0a0a] bg-opacity-80"> <!-- Slightly transparent for depth -->
+                <div class="container mx-auto max-w-7xl">
+                    <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16 section-title reveal">My Technical Toolkit</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Skill Card 1 -->
+                        <div class="glass-card rounded-xl p-6 tech-card-hover reveal-card">
+                            <h3 class="text-2xl font-bold text-white mb-3">Languages & Databases</h3>
+                            <p class="font-code text-gray-300">Python, SQL</p>
+                        </div>
+                        <!-- Skill Card 2 -->
+                        <div class="glass-card rounded-xl p-6 tech-card-hover reveal-card">
+                            <h3 class="text-2xl font-bold text-white mb-3">AI/ML Frameworks</h3>
+                            <p class="font-code text-gray-300">TensorFlow, PyTorch, Scikit-learn, Keras, Pandas, NumPy</p>
+                        </div>
+                        <!-- Skill Card 3 -->
+                        <div class="glass-card rounded-xl p-6 tech-card-hover reveal-card">
+                            <h3 class="text-2xl font-bold text-white mb-3">Data & MLOps</h3>
+                            <p class="font-code text-gray-300">Hugging space Tableau</p>
+                        </div>
+                        <!-- Skill Card 4 -->
+                        <div class="glass-card rounded-xl p-6 tech-card-hover reveal-card">
+                            <h3 class="text-2xl font-bold text-white mb-3">Other Skills</h3>
+                            <p class="font-code text-gray-300">Git</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <!-- Filter Buttons -->
-            <div class="flex justify-center flex-wrap gap-4 mb-12 reveal">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web Development</button>
-                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
-                <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
-            </div>
-
-            <!-- Project Grid -->
-            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="project-card reveal" data-category="web">
-                    <div class="glass-effect rounded-2xl overflow-hidden group">
-                        <img src="https://placehold.co/600x400/111728/FFFFFF?text=Project+1" alt="Project 1" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold mb-2 text-white">E-commerce Platform</h3>
-                            <p class="text-gray-400 mb-4">A full-featured e-commerce site built with React, Node.js, and Stripe integration.</p>
-                            <div class="mb-4">
-                                <span class="tag">React</span>
-                                <span class="tag">Node.js</span>
-                                <span class="tag">Tailwind CSS</span>
+            <!-- 5. Projects Section -->
+            <section id="projects" class="py-24 px-6">
+                <div class="container mx-auto max-w-7xl">
+                    <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16 section-title reveal">Featured Projects</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <!-- Project Card 1 -->
+                        <div class="glass-card rounded-2xl overflow-hidden flex flex-col tech-card-hover reveal-card">
+                            <div class="p-6 flex-grow">
+                                <h3 class="text-2xl font-bold text-white mb-2">[YOUR_PROJECT_1_TITLE]</h3>
+                                <p class="text-gray-300 mb-4">[YOUR_PROJECT_1_DESCRIPTION]</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">[TAG1]</span>
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">[TAG2]</span>
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">[TAG3]</span>
+                                </div>
                             </div>
-                            <div class="flex space-x-4">
-                                <a href="#" class="text-blue-400 hover:text-blue-300 font-medium">Live Demo</a>
-                                <a href="#" class="text-blue-400 hover:text-blue-300 font-medium">GitHub</a>
+                            <div class="p-6 pt-0 flex justify-end gap-4">
+                                <a href="[YOUR_PROJECT_1_GITHUB_LINK]" target="_blank" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-2xl" title="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="[YOUR_PROJECT_1_DEMO_LINK]" target="_blank" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-2xl" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 2 -->
+                        <div class="glass-card rounded-2xl overflow-hidden flex flex-col tech-card-hover reveal-card">
+                            <div class="p-6 flex-grow">
+                                <h3 class="text-2xl font-bold text-white mb-2">[YOUR_PROJECT_2_TITLE]</h3>
+                                <p class="text-gray-300 mb-4">[YOUR_PROJECT_2_DESCRIPTION]</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">[TAG1]</span>
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">[TAG2]</span>
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">[TAG3]</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0 flex justify-end gap-4">
+                                <a href="[YOUR_PROJECT_2_GITHUB_LINK]" target="_blank" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-2xl" title="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="[YOUR_PROJECT_2_DEMO_LINK]" target="_blank" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-2xl" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 3 -->
+                        <div class="glass-card rounded-2xl overflow-hidden flex flex-col tech-card-hover reveal-card">
+                            <div class="p-6 flex-grow">
+                                <h3 class="text-2xl font-bold text-white mb-2">PneumoScan AI</h3>
+                                <p class="text-gray-300 mb-4">Al powered chect xray analyzer</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">ann</span>
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">TensorFlow</span>
+                                    <span class="font-code text-xs bg-[#00e5ff]/20 text-[#00e5ff] py-1 px-3 rounded-full">Streamlit</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0 flex justify-end gap-4">
+                                <a href="[YOUR_PROJECT_3_GITHUB_LINK]" target="_blank" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-2xl" title="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://soumya-soumya.github.io/PneumoScan_AI/#analyzer" target="_blank" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-2xl" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Project Card 2 -->
-                <div class="project-card reveal" data-category="mobile">
-                     <div class="glass-effect rounded-2xl overflow-hidden group">
-                        <img src="https://placehold.co/600x400/111728/FFFFFF?text=Project+2" alt="Project 2" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold mb-2 text-white">Fitness Tracker App</h3>
-                            <p class="text-gray-400 mb-4">A cross-platform mobile app to track workouts and nutrition, built with React Native.</p>
-                             <div class="mb-4">
-                                <span class="tag">React Native</span>
-                                <span class="tag">Firebase</span>
+            </section>
+
+            <!-- 6. Contact Section -->
+            <section id="contact" class="py-24 px-6 text-center">
+                <div class="container mx-auto max-w-3xl">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 section-title reveal">Get In Touch</h2>
+                    <p class="text-lg text-gray-300 mb-10 reveal">
+                        I'm currently open to new opportunities. Whether you have a question, a project proposal, or just want to connect, feel free to reach out.
+                    </p>
+                    
+                    <!-- Social Icons -->
+                    <div class="flex justify-center gap-8 mb-12 reveal">
+                        <a href="https://www.linkedin.com/in/soumyaranjan--sahoo" target="_blank" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-4xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/SOUMYA-soumya" target="_blank" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-4xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:sahoo.soumyaranjan2040@gmail.com" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-4xl">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+917978991136" class="text-gray-400 hover:text-[#00e5ff] transition-colors text-4xl">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- NEW: Terminal Contact Form -->
+                    <div class="glass-card rounded-2xl p-8 text-left reveal">
+                        <form action="https://formspree.io/f/mblpqowg" method="POST">
+                            <div class="mb-5">
+                                <label for="name" class="block mb-2 text-sm font-code text-gray-300">user@name:</label>
+                                <div class="terminal-input-wrapper">
+                                    <input type="text" id="name" name="name" class="w-full p-3 rounded-lg terminal-input" required>
+                                </div>
                             </div>
-                            <div class="flex space-x-4">
-                                <a href="#" class="text-blue-400 hover:text-blue-300 font-medium">View on App Store</a>
+                            <div class="mb-5">
+                                <label for="email" class="block mb-2 text-sm font-code text-gray-300">user@email:</label>
+                                <div class="terminal-input-wrapper">
+                                    <input type="email" id="email" name="email" class="w-full p-3 rounded-lg terminal-input" required>
+                                </div>
                             </div>
-                        </div>
+                            <div class="mb-5">
+                                <label for="message" class="block mb-2 text-sm font-code text-gray-300">user@message:</label>
+                                <div class="terminal-input-wrapper">
+                                    <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-lg terminal-input" required></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-[#00e5ff] text-black font-bold py-3 px-8 rounded-full text-lg hover:bg-opacity-80 transition-all shadow-lg shadow-[#00e5ff]/30 font-code">
+                                ./send-message
+                            </button>
+                        </form>
                     </div>
                 </div>
-                <!-- Project Card 3 -->
-                <div class="project-card reveal" data-category="uiux">
-                     <div class="glass-effect rounded-2xl overflow-hidden group">
-                        <img src="https://placehold.co/600x400/111728/FFFFFF?text=Project+3" alt="Project 3" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold mb-2 text-white">Design System</h3>
-                            <p class="text-gray-400 mb-4">A complete UI/UX design system for a SaaS product, created in Figma.</p>
-                             <div class="mb-4">
-                                <span class="tag">Figma</span>
-                                <span class="tag">UI/UX</span>
-                            </div>
-                            <div class="flex space-x-4">
-                                <a href="#" class="text-blue-400 hover:text-blue-300 font-medium">View on Behance</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more project cards here -->
-            </div>
-        </section>
+            </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 text-center">
-            <h2 class="text-4xl font-bold mb-4 reveal">Get In Touch</h2>
-            <p class="text-gray-400 mb-8 max-w-2xl mx-auto reveal">I'm currently open to new opportunities and collaborations. Feel free to reach out!</p>
-            <div class="reveal">
-                <a href="mailto:your.email@example.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-xl inline-block transition transform hover:scale-105">
-                    Say Hello
-                </a>
-            </div>
-            <div class="flex justify-center gap-8 mt-12 reveal">
-                <!-- LinkedIn -->
-                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-white transition">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                </a>
-                <!-- Phone -->
-                <a href="tel:+1234567890" class="text-gray-400 hover:text-white transition">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.02.74-.25 1.02l-2.2 2.2z"/></svg>
-                </a>
-                <!-- Email -->
-                <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-white transition">
-                   <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                </a>
-            </div>
-        </section>
+        </main>
 
-    </main>
+        <!-- 7. Footer -->
+        <footer class="py-10 text-center border-t border-white/10 mt-20">
+            <p class="text-gray-500">
+                © 2025 SOUMYARANJAN_SAHOO. Built with passion and a bit of AI.
+            </p>
+        </footer>
+    
+    </div> <!-- End of .content-wrapper -->
 
-    <!-- Footer -->
-    <footer class="text-center py-8 border-t border-gray-800">
-        <p class="text-gray-500">&copy; 2024 John Doe. All Rights Reserved.</p>
-    </footer>
+
+    <!-- three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
-        // Navbar scroll effect
+        // --- Standard Navbar & Menu Script ---
         const navbar = document.getElementById('navbar');
         window.onscroll = () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('glass-effect');
+            if (window.scrollY > 80) {
+                navbar.classList.add('glass-card');
             } else {
-                navbar.classList.remove('glass-effect');
+                navbar.classList.remove('glass-card');
             }
         };
-
-        // Mobile Menu Toggle
+        // (Mobile menu script remains the same)
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Project Filtering
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Set active button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                const filter = button.getAttribute('data-filter');
-
-                // Show/hide project cards
-                projectCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filter === 'all' || filter === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
         });
 
-        // Scroll Reveal Animations
-        ScrollReveal().reveal('.reveal', {
-            delay: 200,
+
+        // --- Standard ScrollReveal Script ---
+        const sr = ScrollReveal({
             distance: '50px',
             duration: 800,
             easing: 'cubic-bezier(0.5, 0, 0, 1)',
-            interval: 150,
-            origin: 'bottom'
+            delay: 200,
+            reset: false
         });
+
+        sr.reveal('.reveal', { origin: 'bottom', interval: 100 });
+        sr.reveal('.reveal-fade-in', { duration: 1000, distance: '0px', opacity: 0 });
+        sr.reveal('.reveal-left', { origin: 'left' });
+        sr.reveal('.reveal-right', { origin: 'right' });
+        sr.reveal('.reveal-card', { origin: 'bottom', interval: 150 });
         
-        // Custom animations for hero section
-        ScrollReveal().reveal('.animate-fade-in-down', {
-            delay: 300,
-            duration: 1000,
-            origin: 'top',
-            distance: '30px',
-            easing: 'ease-in-out'
-        });
-        ScrollReveal().reveal('.animate-fade-in-up', {
-            delay: 500,
-            duration: 1000,
+        // --- NEW: ScrollReveal Callback for Section Titles ---
+        sr.reveal('.section-title', {
             origin: 'bottom',
             distance: '30px',
-            easing: 'ease-in-out'
+            duration: 800,
+            afterReveal: (el) => {
+                el.classList.add('reveal-active');
+            }
         });
+
+        
+        // --- Typewriter Effect Script ---
+        function setupTypewriter(target) {
+            const strings = ["Data-Driven ","Finance-Focused"," AI-Fueled"," Hungry to Learn, Wired to Build ","ML-Explorer", "Mad for Python", "Tech Innovator"];
+            let stringIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function type() {
+                const currentString = strings[stringIndex];
+                let displayText = currentString.substring(0, charIndex);
+
+                target.innerHTML = `${displayText}<span class="typewriter-cursor"></span>`;
+
+                if (!isDeleting) {
+                    if (charIndex < currentString.length) {
+                        charIndex++;
+                        setTimeout(type, 100); // Typing speed
+                    } else {
+                        isDeleting = true;
+                        setTimeout(type, 2000); // Pause at end of word
+                    }
+                } else {
+                    if (charIndex > 0) {
+                        charIndex--;
+                        setTimeout(type, 50); // Deleting speed
+                    } else {
+                        isDeleting = false;
+                        stringIndex = (stringIndex + 1) % strings.length;
+                        setTimeout(type, 500); // Pause before typing new word
+                    }
+                }
+            }
+            type();
+        }
+        setupTypewriter(document.getElementById('typewriter-target'));
+
+
+        // --- NEW: Interactive 3D Animated Particle Background ---
+        (function() {
+            let scene, camera, renderer;
+            let particles, line;
+            let particleCount = 150;
+            let maxDistance = 120; // Max distance for lines
+            let mouse = new THREE.Vector2(-500, -500);
+            let particlePositions, particleVelocities, particleColors;
+            
+            // --- NEW: Colors ---
+            const baseColor = new THREE.Color(0xffffff); // Default: white
+            const interactColor = new THREE.Color(0x00e5ff); // Accent: cyan
+            const lineBaseColor = new THREE.Color(0xffffff);
+            const lineInteractColor = new THREE.Color(0x00e5ff);
+
+            function init() {
+                const container = document.getElementById('particles-bg');
+                
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 750;
+
+                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setClearColor(0x000000, 0);
+                container.appendChild(renderer.domElement);
+
+                // Particle Geometry
+                particlePositions = new Float32Array(particleCount * 3);
+                particleVelocities = new Array(particleCount);
+                particleColors = new Float32Array(particleCount * 3); // NEW
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const i3 = i * 3;
+                    particlePositions[i3] = (Math.random() - 0.5) * window.innerWidth;
+                    particlePositions[i3 + 1] = (Math.random() - 0.5) * window.innerHeight;
+                    particlePositions[i3 + 2] = (Math.random() - 0.5) * 500;
+                    
+                    particleVelocities[i] = new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.5,
+                        (Math.random() - 0.5) * 0.5,
+                        (Math.random() - 0.5) * 0.5
+                    );
+                    
+                    // NEW: Set initial colors
+                    baseColor.toArray(particleColors, i3);
+                }
+
+                const particleGeometry = new THREE.BufferGeometry();
+                particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+                particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3)); // NEW
+                
+                // Particle Material & Object
+                const particleMaterial = new THREE.PointsMaterial({
+                    size: 3,
+                    sizeAttenuation: true,
+                    vertexColors: true // NEW: Use colors from geometry
+                });
+                particles = new THREE.Points(particleGeometry, particleMaterial);
+                scene.add(particles);
+
+                // Line Geometry (Plexus)
+                const lineGeometry = new THREE.BufferGeometry();
+                const linePositions = new Float32Array(particleCount * particleCount * 3);
+                const lineColors = new Float32Array(particleCount * particleCount * 3); // NEW
+                lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+                lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3)); // NEW
+                
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    transparent: true,
+                    opacity: 0.05,
+                    vertexColors: true // NEW
+                });
+                line = new THREE.LineSegments(lineGeometry, lineMaterial);
+                scene.add(line);
+
+                window.addEventListener('resize', onWindowResize);
+                document.addEventListener('mousemove', onMouseMove);
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function onMouseMove(event) {
+                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+                
+                const vector = new THREE.Vector3(mouse.x, mouse.y, 0.5);
+                vector.unproject(camera);
+                const dir = vector.sub(camera.position).normalize();
+                const distance = -camera.position.z / dir.z;
+                mouse.world = camera.position.clone().add(dir.multiplyScalar(distance));
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                let lineVertexIndex = 0;
+                const particlePos = particles.geometry.attributes.position.array;
+                const particleCol = particles.geometry.attributes.color.array;
+                const linePos = line.geometry.attributes.position.array;
+                const lineCol = line.geometry.attributes.color.array;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const i3 = i * 3;
+                    
+                    // Update velocity & position
+                    particlePositions[i3] += particleVelocities[i].x;
+                    particlePositions[i3 + 1] += particleVelocities[i].y;
+                    particlePositions[i3 + 2] += particleVelocities[i].z;
+
+                    // Boundary check (wrap around)
+                    if (particlePositions[i3] > window.innerWidth / 2) particlePositions[i3] = -window.innerWidth / 2;
+                    if (particlePositions[i3] < -window.innerWidth / 2) particlePositions[i3] = window.innerWidth / 2;
+                    if (particlePositions[i3 + 1] > window.innerHeight / 2) particlePositions[i3 + 1] = -window.innerHeight / 2;
+                    if (particlePositions[i3 + 1] < -window.innerHeight / 2) particlePositions[i3 + 1] = window.innerHeight / 2;
+                    if (particlePositions[i3 + 2] > 250) particlePositions[i3 + 2] = -250;
+                    if (particlePositions[i3 + 2] < -250) particlePositions[i3 + 2] = 250;
+                    
+                    let isInteracting = false;
+                    
+                    // --- Mouse Interaction ---
+                    if (mouse.world) {
+                        const dx = particlePositions[i3] - mouse.world.x;
+                        const dy = particlePositions[i3 + 1] - mouse.world.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        const repelForce = Math.max(0, (150 - dist) * 0.01);
+                        
+                        if (repelForce > 0) {
+                            isInteracting = true;
+                            particleVelocities[i].x += (dx / dist) * repelForce;
+                            particleVelocities[i].y += (dy / dist) * repelForce;
+                        }
+                    }
+                    
+                    // --- NEW: Update Particle Color ---
+                    if (isInteracting) {
+                        interactColor.toArray(particleCol, i3);
+                    } else {
+                        baseColor.toArray(particleCol, i3);
+                    }
+                    
+                    // --- Plexus (Lines) Logic ---
+                    for (let j = i + 1; j < particleCount; j++) {
+                        const j3 = j * 3;
+                        const dx = particlePositions[i3] - particlePositions[j3];
+                        const dy = particlePositions[i3 + 1] - particlePositions[j3 + 1];
+                        const dz = particlePositions[i3 + 2] - particlePositions[j3 + 2];
+                        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                        if (dist < maxDistance) {
+                            const line_i = lineVertexIndex * 3;
+                            linePos[line_i] = particlePositions[i3];
+                            linePos[line_i + 1] = particlePositions[i3 + 1];
+                            linePos[line_i + 2] = particlePositions[i3 + 2];
+                            
+                            linePos[line_i + 3] = particlePositions[j3];
+                            linePos[line_i + 4] = particlePositions[j3 + 1];
+                            linePos[line_i + 5] = particlePositions[j3 + 2];
+
+                            // --- NEW: Update Line Color ---
+                            if (isInteracting) {
+                                lineInteractColor.toArray(lineCol, line_i);
+                                lineInteractColor.toArray(lineCol, line_i + 3);
+                            } else {
+                                lineBaseColor.toArray(lineCol, line_i);
+                                lineBaseColor.toArray(lineCol, line_i + 3);
+                            }
+                            lineVertexIndex += 2;
+                        }
+                    }
+                     particleVelocities[i].multiplyScalar(0.97);
+                }
+
+                // Update geometry
+                particles.geometry.attributes.position.needsUpdate = true;
+                particles.geometry.attributes.color.needsUpdate = true; // NEW
+                
+                line.geometry.attributes.position.needsUpdate = true;
+                line.geometry.attributes.color.needsUpdate = true; // NEW
+                
+                line.geometry.setDrawRange(0, lineVertexIndex);
+
+                renderer.render(scene, camera);
+            }
+
+            init();
+            animate();
+        })();
     </script>
+
 </body>
 </html>
+
